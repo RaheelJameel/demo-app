@@ -6,6 +6,9 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ViewDataComponent } from './view-data/view-data.component';
+import { ViewDataService } from './view-data/view-data.service';
+
+import { AppRoutingModule } from './app.routing.module';
 
 @NgModule({
   declarations: [
@@ -16,9 +19,10 @@ import { ViewDataComponent } from './view-data/view-data.component';
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [ViewDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

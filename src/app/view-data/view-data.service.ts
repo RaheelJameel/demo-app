@@ -18,9 +18,10 @@ export class ViewDataService {
                     .map(this.extractData)
                     .catch(this.handleError);
   }
-  private extractData(res: Response) {
-    let body = res.json();
-    return body.data || { };
+  
+  private extractData(response: Response) {
+    let body = response.json();
+    return body || { };
   }
 
   private handleError (error: Response | any) {

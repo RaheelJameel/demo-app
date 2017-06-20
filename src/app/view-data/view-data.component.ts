@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from './task-interface';
+import { ViewDataService } from './view-data.service';
 
 @Component({
   selector: 'app-view-data',
@@ -8,33 +9,19 @@ import { Task } from './task-interface';
 })
 export class ViewDataComponent implements OnInit {
 
+  errorMessage: string;
   tasks: Task[];
 
-  constructor() {
-    this.tasks = [
-      {
-        userId: 1,
-        id: 2,
-        title: "Hello",
-        completed: false
-      },
-      {
-        userId: 1,
-        id: 3,
-        title: "Hello",
-        completed: false
-      }
-    ];
-  }
+  constructor(private viewDataService: ViewDataService) {}
 
   ngOnInit() {
+    this.getTasks();
   }
-  
-  getHeroes() {
-  this.heroService.getHeroes()
-                   .subscribe(
-                     heroes => this.heroes = heroes,
-                     error =>  this.errorMessage = <any>error);
-}
 
+  getTasks() {
+    this.viewDataService.getData()
+                    .subscribe(
+                      tasks => this.tasks = tasks,
+                      error =>  this.errorMessage = <any>error);
+  }
 }
