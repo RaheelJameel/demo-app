@@ -1,0 +1,36 @@
+<div *ngIf="!displayEdit">
+  <p>
+    Welcome {{currentProfile.name}}<br /><br />
+    Your Profile Details are<br />
+    Email: {{currentProfile.email}}<br />
+    Gender: {{currentProfile.gender}}<br />
+    Occupation / Job Title: {{currentProfile.occupation}}<br />
+    Company / Organization: {{currentProfile.company}}<br />
+  </p>
+  <button type="button" (click)="toggleDisplay() ">Edit</button>
+</div>
+<div *ngIf="displayEdit">
+  <form novalidate [formGroup]="profileForm" (ngSubmit)="onSubmit()" #formRef=ngForm>
+    <label>Full Name:</label>
+    <input type="text" placeholder="Your Full Bame" formControlName="name" />
+    <div *ngIf="formErrors.name">{{formErrors.name}}</div><br />
+
+    <label>Email:</label>
+    <input type="email" placeholder="Your Email" formControlName="email" />
+    <div *ngIf="formErrors.email">{{formErrors.email}}</div><br />
+
+    <label>Gender:</label>
+    <input type="radio" formControlName="gender" value="male" /> Male <input type="radio" formControlName="gender" value="female" /> Female
+    <div *ngIf="formErrors.gender">{{formErrors.gender}}</div><br />
+
+    <label>Occupation / Job Title:</label>
+    <input type="text" placeholder="Your Occupation" formControlName="occupation" />
+    <div *ngIf="formErrors.occupation">{{formErrors.occupation}}</div><br />
+
+    <label>Company / Organization:</label>
+    <input type="text" placeholder="Your Company" formControlName="company" />
+    <div *ngIf="formErrors.company">{{formErrors.company}}</div><br /><br />
+
+    <button type="submit" [disabled]="formRef.invalid">Save</button><button type="button" (click)="setFormValues()" >Reset</button><button type="button" (click)="clear()" >Clear</button><button type="button" (click)="cancel()" >Cancel</button>
+  </form>
+</div>
