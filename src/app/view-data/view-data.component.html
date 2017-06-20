@@ -1,3 +1,15 @@
-<p>
-  view-data works!
-</p>
+<table border="1">
+  <tr>
+    <td>userId</td>
+    <td>id</td>
+    <td>title</td>
+    <td>completed</td>
+  </tr>
+
+    <tr *ngFor="let task of tasks">
+      <td>{{task.userId}}</td>
+      <td>{{task.id}}</td>
+      <td>{{task.title}}</td>
+      <td>{{task.completed}}</td>
+    </tr>
+</table>
